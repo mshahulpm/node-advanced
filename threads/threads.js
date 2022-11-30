@@ -1,3 +1,4 @@
+process.env.UV_THREADPOOL_SIZE = 1
 const crypto = require('crypto')
 
 function main() {
@@ -28,6 +29,7 @@ function main() {
         console.log('3: ', Date.now() - start)
     })
 
+
     // action 2
     crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', (err, data) => {
 
@@ -40,6 +42,12 @@ function main() {
         console.log('5: ', Date.now() - start)
     })
 
+    // action 2
+    crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', (err, data) => {
+
+        console.log('6: ', Date.now() - start)
+    })
+
     /**
      *    action 1-4 will finish in almost same amount of time
      *    action 5 will take upto 2x time than previous 4 
@@ -50,7 +58,6 @@ function main() {
 }
 
 
-process.env.UV_THREADPOOL_SIZE = 2
 /**
  *   the above variable is decide how many threads are going to be in libuv thread pool 
  *   in this case it is 2 
