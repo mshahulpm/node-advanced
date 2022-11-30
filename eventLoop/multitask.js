@@ -23,13 +23,13 @@ function doHash() {
 }
 
 function readFile() {
-    fs.readFile('./multitask.js', 'utf-8', (err) => {
-        if (err) throw new Error('read file failed')
+    fs.readFile('./async.js', 'utf-8', (err) => {
+        if (err) return console.log('FS on Error: ', Date.now() - start)
         console.log('FS: ', Date.now() - start)
     })
 }
 
-process.env.UV_THREADPOOL_SIZE = 2
+process.env.UV_THREADPOOL_SIZE = 1
 
 doRequest()
 
