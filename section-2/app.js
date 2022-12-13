@@ -1,13 +1,14 @@
+process.env.UV_THREADPOOL_SIZE = 12
 const cluster = require('node:cluster')
 const numCPUs = require('node:os').cpus().length;
 const crypto = require('crypto')
 
 if (cluster.isPrimary) {
     console.log(numCPUs)
-    cluster.fork()
     // cluster.fork()
-    // cluster.fork()
-    // cluster.fork()
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork()
+    }
 } else {
     const express = require('express')
 
