@@ -30,12 +30,8 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    let user = await userCache.getOneUser(req.params.id)
-    if (!user) {
-        console.log('From db')
-        user = await User.findById(req.params.id)
-        userCache.setOneUser(req.params.id, user)
-    }
+    let user = await User.findById(req.params.id).cache()
+    console.log(await user.validate())
     res.json(user)
 })
 
