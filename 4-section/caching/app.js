@@ -14,8 +14,10 @@ app.use(express.json())
 
 // routes 
 const userRoute = require('./routes/user')
+const blogRoute = require('./routes/blog')
 
 app.use('/user', userRoute)
+app.use('/blog', blogRoute)
 
 app.listen(3002, () => {
     console.log('server is listening on port 3002')
