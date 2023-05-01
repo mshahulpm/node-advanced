@@ -30,7 +30,7 @@ const fs = require('fs/promises');
  *   Time   : ~1.3 minute
  *   21.8 GB copied and saved 
  */
-(async () => {
+async function copyFile() {
 
     console.time('read-many')
 
@@ -67,6 +67,45 @@ const fs = require('fs/promises');
         console.timeEnd('read-many')
     })
 
-})()
+}
+
+// this will not block main thread it can be run along web server 
+copyFile()
+
+const http = require('node:http')
+
+const host = 'localhost';
+const port = 8000;
 
 
+
+
+const server = http.createServer(async (req, res) => {
+
+    switch (req.url) {
+        case '/fast':
+            res.writeHead(200);
+            res.end("Fast route");
+            break;
+        case '/slow':
+            let d = Date.now()
+            // while ((Date.now() - d) < 1000 * 60) { }  // block app for 1 minute 
+            // await copyFile()
+            res.writeHead(200);
+            res.end("Slow route");
+            break;
+
+        default:
+            res.writeHead(404);
+            res.end("Not Found!");
+            break;
+    }
+
+
+
+});
+
+
+server.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`);
+});
