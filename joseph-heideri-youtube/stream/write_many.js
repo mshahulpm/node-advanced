@@ -8,16 +8,16 @@ const NO_OF_WRITE = 1000000 * 3;
 // Execution time : 1.18 minute
 // Cpu usage      : ~10%
 // Memory usage   : ~50MB
-// (async () => {
+(async () => {
 
-//     console.time('write-many')
-//     const file = await fs.open('write-text.txt', 'w')
-//     for (let i = 0; i < NO_OF_WRITE; i++) {
-//         await file.write(` ${i} `)
-//     }
-//     console.timeEnd('write-many')
+    console.time('write-many')
+    const file = await fs.open('write-text.txt', 'w')
+    for (let i = 0; i < NO_OF_WRITE; i++) {
+        await file.write(` ${i} `)
+    }
+    console.timeEnd('write-many')
 
-// })();
+});
 
 
 //  ------------ Code B ------------ //
@@ -25,23 +25,23 @@ const NO_OF_WRITE = 1000000 * 3;
 // Execution time : ~10 seconds
 // Cpu usage      : ~7%
 // Memory usage   : ~28MB
-// (async () => {
+(async () => {
 
-//     console.time('write-many')
-//     fs_main.open('write-text.txt', 'w', (err, fd) => {
-//         if (err) console.log(err)
-//         else {
-//             for (let i = 0; i < NO_OF_WRITE; i++) {
-//                 const buff = Buffer.from(` ${i} `)
-//                 fs_main.writeSync(fd, buff)
-//                 // we can pass string directly
-//                 // fs_main.writeSync(fd, ` ${i} `)
-//             }
-//         }
-//         console.timeEnd('write-many')
-//     })
+    console.time('write-many')
+    fs_main.open('write-text.txt', 'w', (err, fd) => {
+        if (err) console.log(err)
+        else {
+            for (let i = 0; i < NO_OF_WRITE; i++) {
+                const buff = Buffer.from(` ${i} `)
+                fs_main.writeSync(fd, buff)
+                // we can pass string directly
+                // fs_main.writeSync(fd, ` ${i} `)
+            }
+        }
+        console.timeEnd('write-many')
+    })
 
-// })()
+});
 
 
 //  ------------ Code C ------------ //
@@ -49,22 +49,22 @@ const NO_OF_WRITE = 1000000 * 3;
 // Execution time : ~10 seconds
 // Cpu usage      : ~20%
 // Memory usage   : ~950MB
-// (async () => {
+(async () => {
 
-//     console.time('write-many')
-//     fs_main.open('write-text.txt', 'w', (err, fd) => {
-//         if (err) console.log(err)
-//         else {
-//             for (let i = 0; i < NO_OF_WRITE; i++) {
-//                 fs_main.write(fd, ` ${i} `, (err) => {
-//                     if (err) console.log(err)
-//                 })
-//             }
-//         }
-//         // console.timeEnd('write-many')
-//     })
+    console.time('write-many')
+    fs_main.open('write-text.txt', 'w', (err, fd) => {
+        if (err) console.log(err)
+        else {
+            for (let i = 0; i < NO_OF_WRITE; i++) {
+                fs_main.write(fd, ` ${i} `, (err) => {
+                    if (err) console.log(err)
+                })
+            }
+        }
+        // console.timeEnd('write-many')
+    })
 
-// })()
+});
 
 
 /* -------  Don't do this way this one is highly memory ineffective ------- */
@@ -73,20 +73,20 @@ const NO_OF_WRITE = 1000000 * 3;
 // Execution time : ~3 second
 // Cpu usage      : ~10%
 // Memory usage   : ~220MB
-// (async () => {
+(async () => {
 
-//     console.time('write-many')
-//     const file = await fs.open('write-text.txt', 'w')
-//     const stream = file.createWriteStream()
+    console.time('write-many')
+    const file = await fs.open('write-text.txt', 'w')
+    const stream = file.createWriteStream()
 
-//     for (let i = 0; i < NO_OF_WRITE; i++) {
-//         const buff = Buffer.from(` ${i} `)
-//         stream.write(buff)
-//     }
-//     // stream.
-//     console.timeEnd('write-many')
+    for (let i = 0; i < NO_OF_WRITE; i++) {
+        const buff = Buffer.from(` ${i} `)
+        stream.write(buff)
+    }
+    // stream.
+    console.timeEnd('write-many')
 
-// })();
+});
 
 
 
