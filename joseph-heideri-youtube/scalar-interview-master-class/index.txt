@@ -1,0 +1,36 @@
+europian/singapoor region 
+--------------------------
+
+1. product mnc :- (fb,amazon,booking.com)
+   
+   -phone DSA (1-2 round)
+
+
+
+  Topics to learn             Resources                                           Practice
+------------------------------------------------------------------------------------------------------------
+- DSA                         Introduction to Algorithms(Book)                    Leet code
+                              Abdul bari (Youtube)                                InterviewBit 
+
+- System design               Designing data-intensive applications(Book)
+    - schema design           head first design patterns (Book)
+    - API design              https://refactoring.guru/
+    - design pattern          
+    - architecture 
+- Core CS concepts 
+    - Garbage collector
+    - concurrency
+
+
+    Place to apply  
+---------------------
+https://www.levels.fyi/
+https://www.angellist.com/
+
+https://turing.com
+https://www.crossover.com/
+https://andela.com/
+
+
+
+Resume template link : https://www.overleaf.com/latex/templates/deedy-cv/bjryvfsjdyxz
