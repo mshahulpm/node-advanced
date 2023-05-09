@@ -1,8 +1,8 @@
 const http = require('http')
 
 
-const port = 3400
-const host = 'localhost' //'192.168.1.68'
+const port = 80
+const host = '127.0.0.1' //'192.168.1.68'
 
 const requestListener = function (req, res) {
     res.writeHead(200);
