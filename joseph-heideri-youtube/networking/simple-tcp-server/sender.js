@@ -3,7 +3,7 @@ const net = require('net')
 
 const socket = net.createConnection({
     port: 3000,
-    host: '127.0.0.1'
+    host: '127.0.0.1' // or ipv6 "::1"
 }, () => {
     // socket.write('Simple message coming from simple connection') 
     // or 
